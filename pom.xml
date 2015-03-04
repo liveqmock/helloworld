@@ -595,14 +595,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.suning.epp</groupId>
-			<artifactId>ssf</artifactId>
-			<version>1.1.7</version>
-		</dependency>
-	</dependencies>
-
 	<build>
 		<pluginManagement>
 			<plugins>
