@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<!-- 日志文件目录 -->
+	<property name="log.path" value="/opt/epp/log/test" />
+	<!-- 环境配置 -->
+  	<property resource="/application.properties" />
+  	
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{50}|%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- Action访问记录 -->
+	<appender name="actionAccessAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.path}/action-access.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.path}/action-access.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<!-- <maxHistory>10</maxHistory> -->
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%X{ip}|%X{user}|%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 业务跟踪 -->
+	<appender name="serviceTraceAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>DENY</onMatch>
+			<onMismatch>ACCEPT</onMismatch>
+		</filter>
+		<file>${log.path}/biz-trace.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.path}/biz-trace.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>500MB</MaxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="mainAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>DENY</onMatch>
+			<onMismatch>ACCEPT</onMismatch>
+		</filter>
+		<file>${log.path}/test.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.path}/test.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- <maxHistory>10</maxHistory> -->
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>500MB</MaxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="dbshardsAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>DENY</onMatch>
+			<onMismatch>ACCEPT</onMismatch>
+		</filter>
+		<file>${log.path}/epp-dbshards.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.path}/epp-dbshards.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- <maxHistory>10</maxHistory> -->
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>500MB</MaxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<!-- 门户错误 -->
+	<appender name="mainErrorAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<file>${log.path}/error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.path}/error.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<!-- <maxHistory>10</maxHistory> -->
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%logger{0}|%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 苏宁技术框架 -->
+	<appender name="snfAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>DENY</onMatch>
+			<onMismatch>ACCEPT</onMismatch>
+		</filter>
+		<file>${log.path}/snf.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.path}/snf.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- <maxHistory>10</maxHistory> -->
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{0}|%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 苏宁技术框架错误 -->
+	<appender name="snfErrorAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<file>${log.path}/snf-error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.path}/snf-error.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<!-- <maxHistory>10</maxHistory> -->
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%logger{0}|%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 其他日志 -->
+	<appender name="otherAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>DENY</onMatch>
+			<onMismatch>ACCEPT</onMismatch>
+		</filter>
+		<file>${log.path}/other.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.path}/other.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<!-- <maxHistory>10</maxHistory> -->
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>500MB</MaxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%level|%logger{50}|%msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 其他错误日志 -->
+	<appender name="otherErrorAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<file>${log.path}/other-error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.path}/other-error.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<!-- <maxHistory>10</maxHistory> -->
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date|%thread|%X{invokeNo}|%logger{50}|%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="ActionAccessLogger" level="INFO" additivity="false">
+		<appender-ref ref="actionAccessAppender" />
+		<appender-ref ref="stdout" />
+	</logger>
+
+	<logger name="org.caesar.test" level="${test.log.level}"
+		additivity="false">
+		<appender-ref ref="mainAppender" />
+		<appender-ref ref="mainErrorAppender" />
+		<appender-ref ref="stdout" />
+	</logger>
+	
+	<logger name="com.suning.epp.dbshards" level="${test.log.level}"
+		additivity="false">
+		<appender-ref ref="dbshardsAppender" />
+		<appender-ref ref="mainErrorAppender" />
+	</logger>
+
+	<logger name="com.suning.epp.pu.common.aop.advice.ServiceAdvice"
+		level="WARN" additivity="false">
+		<appender-ref ref="serviceTraceAppender" />
+		<appender-ref ref="mainErrorAppender" />
+		<appender-ref ref="stdout" />
+	</logger>
+
+	<logger name="com.suning.framework" level="${snf.log.level}"
+		additivity="false">
+		<appender-ref ref="snfAppender" />
+		<appender-ref ref="mainErrorAppender" />
+		<appender-ref ref="stdout" />
+	</logger>
+
+	<logger name="org.caesar.test.web" level="${test.log.level}"
+		additivity="false">
+		<appender-ref ref="eppSessionAppender" />
+		<appender-ref ref="mainErrorAppender" />
+		<appender-ref ref="stdout" />
+	</logger>
+
+	<logger name="org.caesar.test" level="DEBUG" />
+	<logger name="com.suning.snf" level="INFO" />
+	<logger name="ch.qos.logback" level="INFO" />
+	<logger name="org.springframework" level="INFO" />
+	<logger name="org.springframework.web.servlet.mvc.method" level="DEBUG" />
+	<logger name="org.caesar.test.jms.JmsProcess" level="ERROR" />
+	<logger name="net.sf.ehcache" level="INFO" />
+	<logger name="org.hibernate" level="INFO" />
+	<logger name="org.hibernate.SQL" level="INFO" />
+	<logger name="org.apache.ibatis" level="INFO" />
+	<logger name="org.mybatis.spring" level="INFO" />
+	<logger name="org.hibernate.cache" level="INFO" />
+	<logger name="org.apache.struts2" level="INFO" />
+	<logger name="org.apache.commons" level="INFO" />
+	<logger name="org.apache.velocity" level="ERROR" />
+	<logger name="org.apache.tiles" level="ERROR" />
+	<logger name="freemarker" level="ERROR" />
+	<logger name="com.opensymphony.xwork2" level="ERROR" />
+	<logger name="org.apache.commons.validator.ValidatorResources"
+		level="INFO" />
+
+	<logger name="java.sql.Connection" level="ERROR" />
+	<logger name="java.sql.Statement" level="ERROR" />
+	<logger name="java.sql.PreparedStatement" level="DEBUG" />
+	<logger name="java.sql.ResultSet" level="DEBUG" />
+	<logger name="org.mybatis" level="ERROR" />
+	<logger name="org.dozer" level="ERROR" />
+
+	<root>
+		<level value="${other.log.level}" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="otherAppender" />
+		<appender-ref ref="otherErrorAppender" />
+	</root>
+</configuration>

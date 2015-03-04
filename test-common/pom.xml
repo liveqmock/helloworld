@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.caesar</groupId>
+		<artifactId>test</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>test-common</artifactId>
+	<packaging>jar</packaging>
+	<name>Suning's test @ Common tools</name>
+	<dependencies>
+
+		<!-- snf end -->
+
+		<!-- thrid begin -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+		</dependency>
+		<!-- third end -->
+	</dependencies>
+</project>

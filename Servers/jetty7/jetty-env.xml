@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE jetty:configuration SYSTEM "jetty-config.dtd">
+<Configure id="webApp" class="org.eclipse.jetty.webapp.WebAppContext">
+	<!-- 上下文名称 -->
+	<Set name="contextPath">/test</Set>
+	<New id="dataSource" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg>jdbc/test</Arg>
+		<Arg>
+			<New class="org.apache.commons.dbcp.BasicDataSource">
+				<Set name="driverClassName">com.ibm.db2.jcc.DB2Driver</Set>
+				<Set name="url">jdbc:db2://10.27.87.33:60004/epsdb</Set>
+				<Set name="username">epsuser</Set>
+				<Set name="password">epsuser</Set>
+			</New>
+		</Arg>
+	</New>
+</Configure> 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.caesar</groupId>
+    <artifactId>test</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+  <artifactId>test-dmo</artifactId>
+  <packaging>jar</packaging>
+  <name>Suning's test DMO (Data Model Object)</name>
+  <dependencies>
+    <!-- test begin -->
+    <dependency>
+      <groupId>org.caesar</groupId>
+      <artifactId>test-common</artifactId>     
+    </dependency>
+    <!-- test end -->
+
+    <!-- thrid begin -->
+    <!-- 此处添加依赖需要同步添加到war下面防止打包后依赖丢失 -->
+    <!-- third end -->
+  </dependencies>
+</project>

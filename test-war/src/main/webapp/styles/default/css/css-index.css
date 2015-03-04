@@ -1,0 +1,106 @@
+@charset "utf-8";
+/* CSS Document */
+@charset "utf-8";
+/* CSS Document */
+
+#meneLeft {
+	width:188px;
+	list-style-type: none;
+	text-align:left;/*定义整个ul菜单的行高和背景色*/
+	background:#F6FBFD url() no-repeat 35px center;
+}
+/*==================一级目录===================*/
+#meneLeft a {
+	width: 188px;
+	text-decoration:none;
+	display: block;/*Width(一定要)，否则下面的Li会变形*/
+}
+#meneLeft a:hover {
+	text-decoration:none;
+}
+#meneLeft li {
+	border-bottom:#FFF 1px solid; /*下面的一条白边*/
+	float:left;/*float：left,本不应该设置，但由于在Firefox不能正常显示
+	继承Nav的width,限制宽度，li自动向下延伸*/
+	line-height:34px;
+	text-indent:36px;
+}
+#meneLeft li a:hover {
+	/*一级目录onMouseOver显示的背景色*/
+	color:#0758b7;
+	background:url(../images/left_h4_over.gif) no-repeat;
+}
+#meneLeft a:link, #meneLeft a:visited  {
+	color:#444;
+}
+#meneLeft a:hover {
+	color:#FFF;
+	font-weight:bold;
+}
+/*==================二级目录===================*/
+#meneLeft li ul {
+	list-style:none;
+	text-align:left;
+}
+#meneLeft li ul a {
+	text-indent:50px;
+}
+/*下面是二级目录的链接样式*/
+#meneLeft li ul a:link, #meneLeft li ul a:visited  {
+	color:#1377BD;
+	height:28px;
+	line-height:28px;
+	background:url();
+}
+#meneLeft li ul a:hover {
+	font-weight:normal;
+	background:#cfeaff url(../images/icon_subtract.gif) no-repeat 35px 13px;
+}
+#meneLeft li.subtract{
+	background:#F6FBFD url(../images/icon_subtract.gif) no-repeat 35px 13px;
+}
+#meneLeft li.add, #meneLeft li.add a, #meneLeft li.add a:hover{
+	background:#F6FBFD url(../images/icon_add.gif) no-repeat 35px 9px;
+}
+#meneLeft li.none ul{
+	display:none;
+}
+#meneLeft li .selected ul a{
+	color:#717171;
+	background: url() no-repeat 35px center;
+	text-indent:62px;
+	line-height:20px;
+	height:20px;
+}
+#meneLeft li .selected ul a:hover{
+	background:#dcedfa;
+	color:#333;
+	text-decoration:none;
+}
+/*==============================*/
+#meneLeft li:hover ul {
+	left: auto;
+}
+#meneLeft li.sfhover ul {
+	left: auto;
+}
+#content {
+	clear: left;
+}
+#meneLeft ul.collapsed {
+	display: none;
+}
+.menuTitle a {
+background:url("../images/left_h4.gif") no-repeat scroll 0 0 transparent;
+display:block;
+height:34px;
+line-height:34px;
+text-decoration:none;
+text-indent:36px;
+width:188px;
+}
+.menuTitle a:hover {
+background:url("../images/left_h4_over.gif") no-repeat scroll 0 0 transparent;
+color:#0758B7;
+text-decoration:none;
+}

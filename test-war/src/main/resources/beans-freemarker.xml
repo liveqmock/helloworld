@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:p="http://cxf.apache.org/policy" xmlns:ss="http://www.springframework.org/schema/security"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+   	http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd 
+   	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd 
+   	http://cxf.apache.org/policy http://cxf.apache.org/schemas/policy.xsd
+   	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+   	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+   	http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd 
+   	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd 
+   	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+   	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+   	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<!--===================== view resovler ===================== -->
+	<bean id="viewResolver" abstract="true">
+		<property name="attributes">
+			<props>
+				<!-- 资源根路径 -->
+				<prop key="resRoot">${resRoot}</prop>
+				<!-- 资源压缩文件后缀 -->
+				<prop key="minSuffix">${minSuffix}</prop>
+				<!-- 资源文件版本 -->
+				<prop key="jscssVersion">${jscssVersion}</prop>
+				<!-- 应用版本 -->
+				<prop key="versionNo">${appVersion}</prop>
+				<!-- 构建号 -->				
+				<prop key="buildNo">${buildNo}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!--===================== freemarker start ===================== -->
+	<bean id="freemarkerResolver" parent="viewResolver"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<!--<property name="cache" value="true"/> -->
+		<property name="order" value="1" />
+		<property name="prefix" value="" />
+		<property name="suffix" value=".ftl" />
+		<!--如果你需要使用Spring 对 FreeMarker 宏命令的支持, 将这个属性设为true -->
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="allowSessionOverride" value="true" />
+		<property name="allowRequestOverride" value="true" />
+		<property name="contentType" value="text/html;charset=utf-8" /><!--编码 -->
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.freemarker.FreeMarkerView
+			</value>
+		</property>
+		<property name="requestContextAttribute" value="rc"></property>
+	</bean>
+
+	<bean id="freemarkerConfig"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<description>Required for Freemarker to work in web tier</description>
+		<property name="configuration" ref="freemarkerConfiguration" />
+	</bean>
+
+	<bean id="freemarkerConfiguration"
+		class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+		<description>Using the Config directly so we can use it outside the
+			web tier</description>
+		<!-- 模板加载路径 -->
+		<property name="templateLoaderPaths">
+			<list>
+				<value>/WEB-INF/ftl/</value>
+				<value>/commons/</value>
+				<value>/</value>
+			</list>
+		</property>
+		
+		<property name="configLocation">
+			<value>classpath:freemarker.properties</value>
+		</property>
+		<!--全局变量部分 -->
+		<property name="freemarkerVariables">
+			<map>
+				<entry key="xml_escape" value-ref="fmXmlEscape" />
+				<entry key="html_escape" value-ref="fmHtmlEscape" />
+				<entry key="base" value="${base}" />
+				<entry key="resRoot" value="${resRoot}" />
+				<!-- 开发中可根据需要在此添加全局变量 -->
+			</map>
+		</property>
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>
+
+	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
+	<bean id="fmHtmlEscape" class="freemarker.template.utility.HtmlEscape" />
+
+	<!-- 资源文件绑定器 -->         
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="i18n/messages" />               
+		<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+	
+</beans>

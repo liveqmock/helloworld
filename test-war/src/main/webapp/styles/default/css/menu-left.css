@@ -1,0 +1,124 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+    background:url(../images/body_bg.jpg) repeat-x top #fff;
+}
+#menuLeft {
+    width:188px;
+    list-style-type: none;
+    text-align:left;/*定义整个ul菜单的行高和背景色*/
+    background:#F6FBFD;
+    overflow:hidden;
+}
+/*==================一级目录===================*/
+#menuLeft a {
+    width: 188px;
+    text-decoration:none;
+    display: block;/*Width(一定要)，否则下面的Li会变形*/
+    font-size:12px;
+}
+#menuLeft a:hover {
+    text-decoration:none;
+}
+#menuLeft li {
+    border-bottom:#FFF 1px solid; /*下面的一条白边*/
+    line-height:34px;
+    text-indent:40px;
+}
+#menuLeft li a:hover {
+    /*一级目录onMouseOver显示的背景色*/
+    color:#0758b7;
+}
+#menuLeft a:link, #menuLeft a:visited  {
+    color:#444;
+}
+#menuLeft a:hover {
+    color:#FFF;
+    font-weight:bold;
+}
+.menuTitle a {
+    display:block;
+    height:34px;
+    line-height:34px;
+    text-indent:36px;
+    text-decoration:none;
+    color:#444;
+}
+.menuTitle a:hover {
+    color:#0758b7;
+    text-decoration:none;
+    background:url(../images/sub_bg_over_1.gif) no-repeat;
+}
+/*==================二级目录===================*/
+#menuLeft li ul {
+    list-style:none;
+}
+#menuLeft li ul a {
+    text-indent:50px;
+}
+/*下面是二级目录的链接样式*/
+#menuLeft li ul a:link, #menuLeft li ul a:visited  {
+    color:#1377BD;
+    height:28px;
+    line-height:28px;
+    background:url();
+}
+
+/*==============================*/
+
+#menuLeft.dyn li ul {
+    display:none;
+}
+#menuLeft.dyn li ul.show {
+    display:block;
+    font-weight:100;
+}
+
+#menuLeft.dyn li.menuTitle, #menuLeft.dyn li.parent {
+    background:url(../images/sub_bg_1.gif) no-repeat;
+}
+#menuLeft.dyn li.open {
+    background:url(../images/sub_bg_2.gif) no-repeat;
+    font-weight:bold;
+}
+#menuLeft.dyn li.open a{
+    color:#0758b7;
+}
+#menuLeft.dyn li.open a:hover {
+    background:url(../images/sub_bg_over_2.gif) no-repeat;
+}
+#menuLeft.dyn li.two{
+    background:#F6FBFD url(../images/icon_subtract.gif) no-repeat 35px 13px;
+    line-height:28px;
+}
+#menuLeft.dyn li.now a {
+    background:#cfeaff url(../images/icon_subtract.gif) no-repeat 35px 13px;
+    font-weight:bold;
+}
+/*#menuLeft.dyn li.open .two a{
+    color:#444;
+}*/
+#menuLeft.dyn li.open .two a:hover {
+    background:#cfeaff url(../images/icon_subtract.gif) no-repeat 35px 13px;
+}
+/*有三级的加号
+#menuLeft.dyn li.twoAdd{
+    background:#F6FBFD url(../images/icon_add.gif) no-repeat 35px 9px;
+    line-height:28px;
+}
+#menuLeft.dyn li.open .twoAdd a{
+    border-bottom:1px solid #fff;
+}
+#menuLeft.dyn li.open .twoAdd a:hover {
+    background:#cfeaff url(../images/icon_add.gif) no-repeat 35px 9px;
+    
+}
+#menuLeft.dyn li.open .twoAdd li.three a {
+    text-indent:60px;
+    background:#f6fbfd;
+}
+#menuLeft.dyn li.open .twoAdd li.three a:hover {
+    background:#cfeaff url();
+    
+}
+*/
