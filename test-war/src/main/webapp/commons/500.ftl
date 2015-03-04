@@ -1,12 +1,12 @@
 <html>
 <head>
-	<title>403 Error</title>
+	<title>错误页面</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 </head>
 
 <body>
 <div>
-	403 No Permission.
+	系统内部出错，请稍后再试。
 </div>
 </body>
-</html>
+</ht
